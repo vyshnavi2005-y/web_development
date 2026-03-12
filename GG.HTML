@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Task Alarm</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#eef2f7;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:12px;
+width:350px;
+text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+max-height:90vh;
+overflow:auto;
+}
+
+input{
+width:90%;
+padding:8px;
+margin:5px 0;
+}
+
+button{
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+#status{
+margin-top:15px;
+font-weight:bold;
+color:green;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>⏰ Task Alarm Planner</h2>
+
+<input type="number" id="taskCount" placeholder="How many tasks?">
+
+<br>
+
+<button onclick="createInputs()">Create Tasks</button>
+
+<div id="tasksArea"></div>
+
+<button onclick="setAlarms()">Set All Alarms</button>
+
+<p id="status"></p>
+
+</div>
+
+<audio id="alarmSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+
+<script>
+
+let alarms = [];
+
+function createInputs(){
+
+let count = document.getElementById("taskCount").value;
+let area = document.getElementById("tasksArea");
+
+area.innerHTML = "";
+
+for(let i=0;i<count;i++){
+
+area.innerHTML += `
+<input type="text" placeholder="Task ${i+1}" id="task${i}">
+<input type="time" id="time${i}">
+<br>
+`;
+
+}
+
+}
+
+function setAlarms(){
+
+alarms = [];
+
+let count = document.getElementById("taskCount").value;
+
+for(let i=0;i<count;i++){
+
+let task = document.getElementById("task"+i).value;
+let time = document.getElementById("time"+i).value;
+
+if(time!=""){
+alarms.push({task:task,time:time});
+}
+
+}
+
+document.getElementById("status").innerText="Alarms Set Successfully";
+
+}
+
+setInterval(function(){
+
+let now = new Date();
+
+let currentTime =
+String(now.getHours()).padStart(2,'0') + ":" +
+String(now.getMinutes()).padStart(2,'0');
+
+alarms.forEach(function(alarm){
+
+if(alarm.time === currentTime){
+
+document.getElementById("alarmSound").play();
+
+alert("Reminder! Time to do: " + alarm.task);
+
+alarm.time = null;
+
+}
+
+});
+
+},1000);
+
+</script>
+
+</body>
+</html>
