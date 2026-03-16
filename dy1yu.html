@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Task Scheduler</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:url("https://www.freepik.com/free-vector/brown-wallpaper-with-retro-watch-design_2958657.htm#fromView=keyword&page=1&position=0&uuid=81c76ecc-b7c3-4f07-8829-9069f794071c&query=Time+background");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+.container{
+display:flex;
+height:100vh;
+}
+
+/* LEFT PART */
+
+.left{
+width:33%;
+background:white;
+padding:20px;
+border-right:2px solid #ddd;
+}
+
+.icons{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin-top:20px;
+}
+
+.icons img{
+width:65px;
+height:65px;
+cursor:pointer;
+border-radius:10px;
+padding:5px;
+}
+
+.icons img:hover{
+background:#e6f0ff;
+transform:scale(1.1);
+}
+
+/* MIDDLE PART */
+
+.middle{
+width:34%;
+padding:20px;
+text-align:center;
+}
+
+.middleBox{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 5px gray;
+margin-top:50px;
+}
+
+/* RIGHT PART */
+
+.right{
+width:33%;
+background:white;
+padding:20px;
+border-left:2px solid #ddd;
+overflow:auto;
+}
+
+.scheduleItem{
+background:#eef3ff;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+}
+
+
+button{
+padding:8px 15px;
+background:blue;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+body{
+font-family:Arial;
+margin:0;
+background-image:url(body{
+font-family:Arial;
+margin:0;
+background-image:url("https://www.freepik.com/free-vector/brown-wallpaper-with-retro-watch-design_2958657.htm#fromView=keyword&page=1&position=0&uuid=81c76ecc-b7c3-4f07-8829-9069f794071c&query=Time+background");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="left">
+<h3>Choose Task</h3>
+<div class="icons">
+<img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" onclick="selectTask('Sleeping')">
+<img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" onclick="selectTask('Study')">
+<img src="https://cdn-icons-png.flaticon.com/512/1048/1048941.png" onclick="selectTask('Gym')">
+<img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" onclick="selectTask('Meeting')">
+<img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" onclick="selectTask('Eating')">
+
+<img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" onclick="selectTask('Reading')">
+<img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" onclick="selectTask('Coding')">
+<img src="https://cdn-icons-png.flaticon.com/512/3063/3063821.png" onclick="selectTask('Walking')">
+<img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" onclick="selectTask('Water Break')">
+<img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" onclick="selectTask('Meditation')">
+
+<img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" onclick="selectTask('Music')">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998610.png" onclick="selectTask('Shopping')">
+<img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png" onclick="selectTask('Cleaning')">
+<img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" onclick="selectTask('Watching TV')">
+<img src="https://cdn-icons-png.flaticon.com/512/2554/2554978.png" onclick="selectTask('Cooking')">
+
+<img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" onclick="selectTask('Travel')">
+<img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" onclick="selectTask('Call Friend')">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" onclick="selectTask('Work')">
+<img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" onclick="selectTask('Exercise')">
+<img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" onclick="selectTask('Gaming')">
+<img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" onclick="selectTask('Travel')">
+<img src="https://cdn-icons-png.flaticon.com/512/535/535239.png" onclick="selectTask('Call Friend')">
+<img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" onclick="selectTask('Work')">
+<img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" onclick="selectTask('Exercise')">
+<img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" onclick="selectTask('Gaming')">
+
+</div>
+
+</div>
+
+<!-- MIDDLE ALARM SET -->
+
+<div class="middle">
+
+<h2>Set Alarm</h2>
+
+<div class="middleBox">
+
+<p id="taskName">Select a task</p>
+
+<input type="time" id="alarmTime">
+
+<br><br>
+
+<button onclick="setAlarm()">Set Alarm</button>
+
+</div>
+
+</div>
+
+<!-- RIGHT SCHEDULE LIST -->
+
+<div class="right">
+
+<h3>Schedule List</h3>
+
+<div id="scheduleList"></div>
+
+</div>
+
+</div>
+
+<audio id="alarmSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+
+<script>
+
+var selectedTask = "";
+var alarms = [];
+
+function selectTask(task){
+
+selectedTask = task;
+
+document.getElementById("taskName").innerText = task;
+
+}
+
+function setAlarm(){
+
+var time = document.getElementById("alarmTime").value;
+
+if(selectedTask == ""){
+alert("Select a task first");
+return;
+}
+
+if(time == ""){
+alert("Select time");
+return;
+}
+
+var alarm = {
+task:selectedTask,
+time:time
+};
+
+alarms.push(alarm);
+
+var list = document.getElementById("scheduleList");
+
+list.innerHTML += "<div class='scheduleItem'>"+selectedTask+" - "+time+"</div>";
+
+alert("Alarm set for "+selectedTask);
+
+}
+
+setInterval(function(){
+
+var now = new Date();
+
+var h = String(now.getHours()).padStart(2,'0');
+var m = String(now.getMinutes()).padStart(2,'0');
+
+var currentTime = h+":"+m;
+
+for(var i=0;i<alarms.length;i++){
+
+if(alarms[i].time == currentTime){
+
+document.getElementById("alarmSound").play();
+
+alert("Reminder: "+alarms[i].task);
+
+alarms[i].time = "done";
+
+}
+
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>
