@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>Task Scheduler</title>
+<style>
+    body{
+font-family:Arial;
+margin:0;
+background:url("https://img.freepik.com/premium-photo/orange-alarm-clock-desk-lamp-notebook-with-pen-vibrant-green-background-modern-creative-workspace-concept-productivity-organization_1222051-4392.jpg?semt=ais_hybrid&w=740&q=80");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+
+.container{
+display:flex;
+height:100vh;
+}
+
+.left{
+width:33%;
+padding:20px;
+border-right:2px solid 
+}
+
+.middle{
+width:34%;
+padding:20px;
+text-align:center;
+}
+
+.right{
+width:33%;
+padding:20px;
+border-left:2px solid
+overflow:auto;
+}
+.icons{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-top:20px;
+}
+.icons img{
+width:65px;
+height:65px;
+cursor:pointer;
+border-radius:10px;
+padding:5px;
+background:white;
+}
+.icons img:hover{
+background:#e6f0ff;
+transform:scale(1.1);
+}
+.scheduleItem{
+background:#eef3ff;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+}
+button{
+padding:8px 15px;
+background:blue;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="left">
+<h3>Choose Task</h3>
+<div class="icons">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMZXLrR2_pbXNLJiES_C7pELa1Ku-DHaIOkw&s" onclick="selectTask('Sleeping')">
+<img src="https://www.euroschoolindia.com/blogs/wp-content/uploads/2023/08/study-rewards.jpg"onclick="selectTask('Study')">
+<img src="https://img.freepik.com/free-photo/strong-man-training-gym_1303-23478.jpg?semt=ais_hybrid&w=740&q=80" onclick="selectTask('Gym')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXZ9JZAakjCi_92GWdTxJSI19i2wDDUuthiA&s" onclick="selectTask('Meeting')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRvg4ChlXiqpKhWf9wU8mdf8Nijhf0nTYzFQ&s" onclick="selectTask('Eating')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg8aaIoiBeJyoIwIcON5_Tsg797gbeNBBaPw&s" onclick="selectTask('Walking')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1en0xZ-p3-aDK6jfWxlcOWgOkuj68wT7XwA&s" onclick="selectTask('Water Break')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcuEbYTG2ZJW223qEf_PFhjxarjUhjtxYuGA&s" onclick="selectTask('Reading')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSylGKGcsQlKaQ43TYsCS0oy3Cll9sOPldKeQ&s" onclick="selectTask('Meditation')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTosrUjAHc3lPFPnZIwJ_YaZsPkUhEOtFOw5Q&s" onclick="selectTask('Coding')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq2JoanjMvE_0QhO70DJUZcMejruBfzdG39A&s" onclick="selectTask('Music')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqZWWylLGHIk2JvzOLbEry4mQdcmd1K7vEkg&s" onclick="selectTask('Cleaning')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHMAxbLM1F0iAXvw3HPXK9vcyWPeUssC0DEQ&s" onclick="selectTask('Watching TV')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThj1ieB2dhrFwvVOuKRtedaHsfOSSLqjBfOA&s" onclick="selectTask('Cooking')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRrck-1527kxKx0NCE3ufw82hEz_FD0zHsow&s" onclick="selectTask('Family Time')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxrcF0HwP16wAPkrqxsoXExAJgOGU7EcepiQ&s" onclick="selectTask('Shopping')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC5vygEcfWEaV5i4CCa7wT7wutO-rSCIE1bA&s" onclick="selectTask('Swimming')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD1Dob1NUjuEdY0Nph-ym2AjwJYANVyqB9zg&s" onclick="selectTask('Work')">
+<img src="https://thumbs.dreamstime.com/b/illustration-indian-classical-dancer-dancing-style-42614310.jpg" onclick="selectTask('Dancing')">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCESAuXUYbKY7UByyMymipvWaveBrrnk6cDg&s" onclick="selectTask('Gaming')">
+</div>
+</div>
+<div class="middle">
+<h2>Set Alarm</h2>
+<div class="middleBox">
+<p id="taskName">Select a task</p>
+<input type="time" id="alarmTime">
+<br><br>
+<button onclick="setAlarm()">Set Alarm</button>
+</div>
+</div>
+<div class="right">
+<h3>Schedule List</h3>
+<div id="scheduleList"></div>
+</div>
+</div>
+<audio id="alarmSound" src="<audio id="bgMusic" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+<script>
+var selectedTask = "";
+var alarms = [];
+function selectTask(task){
+selectedTask = task;
+document.getElementById("taskName").innerText = task;
+}
+function setAlarm(){
+var time = document.getElementById("alarmTime").value;
+if(selectedTask == ""){
+alert("Select a task first");
+return;
+}
+if(time == ""){
+alert("Select time");
+return;
+}
+var alarm = {
+task:selectedTask,
+time:time
+};
+alarms.push(alarm);
+var list = document.getElementById("scheduleList");
+list.innerHTML += "<div class='scheduleItem'>"+selectedTask+" - "+time+"</div>";
+alert("Alarm set for "+selectedTask);
+}
+setInterval(function(){
+var now = new Date();
+var h = String(now.getHours()).padStart(2,'0');
+var m = String(now.getMinutes()).padStart(2,'0');
+var currentTime = h+":"+m;
+for(var i=0;i<alarms.length;i++){
+if(alarms[i].time == currentTime){
+document.getElementById("alarmSound").play();
+alert("Reminder: "+alarms[i].task);
+alarms[i].time = "done";
+}
+}
+},1000);
+</script>
+</body>
+</html>
